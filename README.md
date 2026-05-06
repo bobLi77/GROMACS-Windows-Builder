@@ -1,11 +1,11 @@
 # GROMACS binary builds for Windows x64
 
-[GROMACS version](https://manual.gromacs.org/current/download.html): 2026.1
+[GROMACS version](https://manual.gromacs.org/current/download.html): 2026.2
 
 ## Overall
 - Target OS: Microsoft Windows 10 or 11 (64-bit).
 - Target CPU: x84_64 CPUs that support AVX2 instructions.
-- Bundled with [FFTW (3.3.10)](https://fftw.org), [OpenBLAS (0.3.32)](https://www.openblas.net/) and [hwloc (2.13.0)](https://github.com/open-mpi/hwloc).
+- Bundled with [FFTW (3.3.10)](https://fftw.org), [OpenBLAS (0.3.33)](https://www.openblas.net/) and [hwloc (2.13.0)](https://github.com/open-mpi/hwloc).
 - Compiled with OpenMP support, but without MPI support.
 - Extra force fields: [CHARMM36 (February 2026)](https://mackerell.umaryland.edu/charmm_ff.shtml#gromacs)
 
@@ -20,7 +20,7 @@ Nvidia Windows driver (version 591.74 or higher) which supports Nvidia CUDA 13.1
 
 ## Patches
 The following unmerged PRs of vcpkg registry are introduced to improve the dependency versions:
-* OpenBLAS: https://github.com/microsoft/vcpkg/pull/49481
+* OpenBLAS: https://github.com/microsoft/vcpkg/pull/51377
 * hwloc: https://github.com/microsoft/vcpkg/pull/50882
 * The flag `-DBUILD_WITHOUT_LAPACK=ON` has been removed from OpenBLAS.
 
