@@ -81,11 +81,11 @@ jobs:
         run: |
           cd `cygpath "${{ env.gmxcompileto }}"/share/gromacs/top`
           curl -Lo 'charmm36-feb2026_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_cgenff-5.0.ff.tgz'
-          echo '372b7948ed06e6ba9f752abdb51d8df05f1f1347b6c651ce8fbf8d0d7382c3de  charmm36-feb2026_cgenff-5.0.ff.tgz' | sha256sum -c
+          echo 'c2b0c70e21cced150528ee25d205e5bd3367a5e55e85c2ff0403911980528151  charmm36-feb2026_cgenff-5.0.ff.tgz' | sha256sum -c
           tar -x --ungzip -f charmm36-feb2026_cgenff-5.0.ff.tgz
           sed -i '1cCHARMM36 all-atom force field (February 2026)' charmm36-feb2026_cgenff-5.0.ff/forcefield.doc
           curl -Lo 'charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz'
-          echo 'e46baf8481badd1508acc881643e33c500bd719b99da89426a957a305585c363  charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' | sha256sum -c
+          echo 'b2221dcba73066b6b5c30a52b9894216d03ea6c3e68206d9ce43857dd8116c21  charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' | sha256sum -c
           tar -x --ungzip -f charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz
           sed -i '1cCHARMM36 LJ-PME all-atom force field (February 2026)' charmm36-feb2026_ljpme_cgenff-5.0.ff/forcefield.doc
           rm -f charmm36-feb2026_cgenff-5.0.ff.tgz charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz
