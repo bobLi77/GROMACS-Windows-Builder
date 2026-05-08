@@ -38,7 +38,7 @@ jobs:
           gmxdownloadlink: https://ftp.gromacs.org/gromacs/gromacs-2026.2.tar.gz
           gmxmd5hash: "74c859cb7f53919f9c7760c287b43323"
         run: |
-          curl -Lfo gromacs_src.tar.gz ${{ env.gmxdownloadlink }}
+          curl --retry 10 -Lfo gromacs_src.tar.gz ${{ env.gmxdownloadlink }}
           echo "${{ env.gmxmd5hash }}  gromacs_src.tar.gz" | md5sum -c
           tar xf gromacs_src.tar.gz
 
@@ -87,11 +87,11 @@ jobs:
         shell: bash
         run: |
           cd `cygpath "${{ env.gmxcompileto }}"/share/gromacs/top`
-          curl -Lo 'charmm36-feb2026_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_cgenff-5.0.ff.tgz'
+          curl --retry 10 -Lo 'charmm36-feb2026_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_cgenff-5.0.ff.tgz'
           echo 'c2b0c70e21cced150528ee25d205e5bd3367a5e55e85c2ff0403911980528151  charmm36-feb2026_cgenff-5.0.ff.tgz' | sha256sum -c
           tar -x --ungzip -f charmm36-feb2026_cgenff-5.0.ff.tgz
           sed -i '1cCHARMM36 all-atom force field (February 2026)' charmm36-feb2026_cgenff-5.0.ff/forcefield.doc
-          curl -Lo 'charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz'
+          curl --retry 10 -Lo 'charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz'
           echo 'b2221dcba73066b6b5c30a52b9894216d03ea6c3e68206d9ce43857dd8116c21  charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' | sha256sum -c
           tar -x --ungzip -f charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz
           sed -i '1cCHARMM36 LJ-PME all-atom force field (February 2026)' charmm36-feb2026_ljpme_cgenff-5.0.ff/forcefield.doc
