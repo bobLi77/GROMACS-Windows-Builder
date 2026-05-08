@@ -54,7 +54,7 @@ jobs:
           curl -Lfo gromacs_src.tar.gz ${{ env.gmxdownloadlink }}
           echo "${{ env.gmxmd5hash }}  gromacs_src.tar.gz" | md5sum -c
           tar xf gromacs_src.tar.gz
-        
+
       - name: Patch CUDA CMake
         shell: bash
         run:
