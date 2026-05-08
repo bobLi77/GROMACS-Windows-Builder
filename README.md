@@ -16,7 +16,7 @@ Including both single (`gmx.exe`) and double precision (`gmx_d.exe`) versions.
 ## GPU version
 [![build_cuda](https://github.com/KaneGreen/GROMACS-Windows-Builder/actions/workflows/build_cuda.yml/badge.svg)](https://github.com/KaneGreen/GROMACS-Windows-Builder/actions/workflows/build_cuda.yml)  
 Single precision version only.  
-Nvidia Windows driver (version 591.74 or higher) which supports Nvidia CUDA 13.1.0 or higher is required. **It is strongly recommended to install the latest supported GPU driver.**
+Nvidia Windows driver (version 595.79 or higher) which supports Nvidia CUDA 13.2.0 or higher is required. **It is strongly recommended to install the latest supported GPU driver.**
 
 ## Patches
 The following unmerged PRs of vcpkg registry are introduced to improve the dependency versions:
