@@ -54,6 +54,12 @@ jobs:
           curl -Lfo gromacs_src.tar.gz ${{ env.gmxdownloadlink }}
           echo "${{ env.gmxmd5hash }}  gromacs_src.tar.gz" | md5sum -c
           tar xf gromacs_src.tar.gz
+        
+      - name: Patch CUDA CMake
+        shell: bash
+        run:
+          cd gromacs-${{ env.gmxversion }}
+          sed -i '/option(GMX_CLANG_CUDA/aset(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler=/Zc:preprocessor"' cmake/gmxManageCuda.cmake
 
       - name: Compile GROMACS CUDA
         shell: cmd
