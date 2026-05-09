@@ -83,24 +83,11 @@ jobs:
           sha256sum gmx.exe | tee gmx.exe.sha256
           sha256sum gmx_d.exe | tee gmx_d.exe.sha256
 
-      - name: Extra force fields
-        shell: bash
-        run: |
-          cd `cygpath "${{ env.gmxcompileto }}"/share/gromacs/top`
-          curl --retry 10 -Lo 'charmm36-feb2026_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_cgenff-5.0.ff.tgz'
-          echo 'c2b0c70e21cced150528ee25d205e5bd3367a5e55e85c2ff0403911980528151  charmm36-feb2026_cgenff-5.0.ff.tgz' | sha256sum -c
-          tar -x --ungzip -f charmm36-feb2026_cgenff-5.0.ff.tgz
-          sed -i '1cCHARMM36 all-atom force field (February 2026)' charmm36-feb2026_cgenff-5.0.ff/forcefield.doc
-          curl --retry 10 -Lo 'charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' 'https://mackerell.umaryland.edu/download.php?filename=CHARMM_ff_params_files/charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz'
-          echo 'b2221dcba73066b6b5c30a52b9894216d03ea6c3e68206d9ce43857dd8116c21  charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz' | sha256sum -c
-          tar -x --ungzip -f charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz
-          sed -i '1cCHARMM36 LJ-PME all-atom force field (February 2026)' charmm36-feb2026_ljpme_cgenff-5.0.ff/forcefield.doc
-          rm -f charmm36-feb2026_cgenff-5.0.ff.tgz charmm36-feb2026_ljpme_cgenff-5.0.ff.tgz
-
-      - name: Copy DLLs and Test
+      - name: Copy DLLs, extra force fields and Test
         continue-on-error: true
         shell: pwsh
         run: |
+          Copy-Item -Recurse -Path "extra_force_fields\charmm36*.ff" "${{ env.gmxcompileto }}\share\gromacs\top\"
           Copy-Item -Force -Path "${{ env.dependpath }}\bin\*.dll" -Destination "${{ env.gmxcompileto }}\bin\"
           Set-Location ${{ env.gmxcompileto }}\bin
           Remove-Item -Force -Path fftw3l.dll
