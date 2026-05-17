@@ -20,7 +20,6 @@ Nvidia Windows driver (version 595.79 or higher) which supports Nvidia CUDA 13.2
 
 ## Patches
 The following unmerged PRs of vcpkg registry are introduced to improve the dependency versions:
-* OpenBLAS: https://github.com/microsoft/vcpkg/pull/51377
 * hwloc: https://github.com/microsoft/vcpkg/pull/50882
 * The flag `-DBUILD_WITHOUT_LAPACK=ON` has been removed from OpenBLAS.
 
