@@ -70,7 +70,9 @@ jobs:
           call "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_INSTALL_PREFIX=${{ env.gmxcompileto }}" "-DCMAKE_PREFIX_PATH=${{ env.dependpath }}" "-DGMX_GPU=CUDA" "-DGMX_SIMD=AVX2_256" "-DGMX_HWLOC=ON" -DGMX_BUILD_OWN_FFTW=OFF ..
           cmake --build .
-          cmake --install .
+          mkdir "${{ env.gmxcompileto }}\bin"
+          copy "bin\gmx.exe" "${{ env.gmxcompileto }}\bin\"
+          copy "bin\gmx_*.exe" "${{ env.gmxcompileto }}\bin\"
           cd ..
           cd ..
           rd /S /Q gromacs-${{ env.gmxversion }}
